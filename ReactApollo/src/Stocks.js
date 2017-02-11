@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import {Table, Column, Cell} from 'fixed-data-table';
 import TextCell from './TextCell';
+import LinkCell from './LinkCell';
 import NumbericColorCell from './NumbericColorCell.js';
 import '../node_modules/fixed-data-table/dist/fixed-data-table.min.css';
 
@@ -26,7 +27,7 @@ const Stocks = ({ data: { loading, stocks } }) => {
 
           <Column
             header={<Cell>Symbol</Cell>}
-            cell={<TextCell data={stocks} field="symbol" />
+            cell={<LinkCell data={stocks} field="symbol" />
             }
             width={200}
           />
