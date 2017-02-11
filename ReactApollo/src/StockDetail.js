@@ -3,24 +3,19 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
 
-const StockDetail = (props) => {
-    console.log(props);
-    return <div>Stock detail...</div>;
+const StockDetail = ({ data: { stockBySymbol } }) => {
+
+    return <div>hello.</div>;
 };
 
 export default StockDetail;
 
 export default graphql(gql`
   query StockDetailQuery($symbol: String!) {
-    stockBySymbol(id: $symbol) {
+    stockBySymbol(symbol: $symbol) {
             companyName
             symbol
             price
-            change
-            changePct
-            openPrice
-            marketCap
-            exchange
     }
   }
 `, {
