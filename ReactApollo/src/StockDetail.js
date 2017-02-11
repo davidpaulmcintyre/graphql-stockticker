@@ -1,12 +1,13 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-
+import { Link } from 'react-router'
 
 const StockDetail = ({data: {stockBySymbol }}) => {
     stockBySymbol = stockBySymbol || {};
     return (
       <div style={{padding: '20px'}}>
+        <Link to='/'>Home</Link>
         <h2>Stock detail</h2>
         <div><b>CompanyName: </b><span>{stockBySymbol.companyName}</span>  </div>
         <div><b>Symbol: </b><span>{stockBySymbol.symbol}</span>  </div>
