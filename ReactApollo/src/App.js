@@ -6,14 +6,16 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import './App.css';
 
 import BookSearch from './BookSearch';
-import BookDetails from './BookDetails';
+import Stocks from './Stocks';
+
 
 const Layout = ({ children }) => (
   <div>{ children }</div>
 );
 
 // Replace this Uri with your GraphQL server Uri
-const serverUri = 'http://localhost:5000/graphql';
+// const serverUri = 'http://localhost:5000/';
+const serverUri = 'http://loki.graphql.tk:5000';
 
 class App extends Component {
   constructor(...args) {
@@ -37,7 +39,8 @@ class App extends Component {
         <Router history={browserHistory}>
           <Route path="/" component={Layout}>
             <IndexRoute component={BookSearch} />
-            <Route path="/details/:bookId" component={BookDetails} />
+            <Route path="stocks" component={Stocks} />
+
           </Route>
         </Router>
       </ApolloProvider>
