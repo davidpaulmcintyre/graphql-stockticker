@@ -80,7 +80,7 @@ class App extends Component {
           <Route path="/" component={Layout}>
             <IndexRoute component={Stocks} />
             <Route path="stocks/:symbol" component={StockDetail} />
-            <Route path="/subscription/:symbol" component={() => (
+            <Route path="/subscription" component={() => (
               <SubscriptionWithData
                 client={this.client}
                 updateStocksQuery={SUBSCRIPTION_QUERY} />
