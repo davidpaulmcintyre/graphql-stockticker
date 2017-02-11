@@ -6,6 +6,7 @@ import auth from 'basic-auth';
 import { createServer } from 'http';
 import { SubscriptionServer } from 'subscriptions-transport-ws';
 import { subscriptionManager, pubsub } from './subscriptions';
+import { start } from './tick';
 
 const app = express();
 app.use(cors());
@@ -48,6 +49,8 @@ new SubscriptionServer(
     path: '/'
   }
 );
+
+start();
 
 // once app is started, execute queries like so:
 // curl localhost:5000 -d "query={authors{id,name, books{id}}}"
