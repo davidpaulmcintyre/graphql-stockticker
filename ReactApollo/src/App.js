@@ -9,7 +9,9 @@ import BookSearch from './BookSearch';
 import Stocks from './Stocks';
 
 import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
-const wsClient = new SubscriptionClient('ws://loki.graphql.tk:5000');
+const wsClient = new SubscriptionClient('ws://loki.graphql.tk:5001/', {
+  reconnect: true
+});
 
 const Layout = ({ children }) => (
   <div>{ children }</div>
