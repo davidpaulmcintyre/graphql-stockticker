@@ -4,8 +4,8 @@ import { graphql } from 'react-apollo';
 import {Table, Column, Cell} from 'fixed-data-table';
 import TextCell from './TextCell';
 import LinkCell from './LinkCell';
-import NumbericColorCell from './NumbericColorCell.js';
-import NumberCell from './NumberCell.js';
+import NumericColorCell from './NumericColorCell';
+import NumberCell from './NumberCell';
 import '../node_modules/fixed-data-table/dist/fixed-data-table.min.css';
 
 const Stocks = ({ data: { loading, stocks } }) => {
@@ -49,14 +49,14 @@ const Stocks = ({ data: { loading, stocks } }) => {
 
           <Column
             header={<Cell>Change</Cell>}
-            cell={<NumbericColorCell data={stocks} field="change" />
+            cell={<NumericColorCell data={stocks} field="change" />
             }
             width={200}
           />
 
           <Column
             header={<Cell>{'% Change'}</Cell>}
-            cell={<NumbericColorCell data={stocks} field="changePct" />
+            cell={<NumericColorCell data={stocks} field="changePct" />
             }
             width={200}
           />
