@@ -6,6 +6,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import './App.css';
 
 import Stocks from './Stocks';
+import StockDetail from './StockDetail';
 
 import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
 const wsClient = new SubscriptionClient('ws://loki.graphql.tk:5001/', {
@@ -46,6 +47,7 @@ class App extends Component {
         <Router history={browserHistory}>
           <Route path="/" component={Layout}>
             <IndexRoute component={Stocks} />
+            <Route path="stocks/:symbol" component={StockDetail} />            
           </Route>
         </Router>
       </ApolloProvider>
