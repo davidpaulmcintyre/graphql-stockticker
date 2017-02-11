@@ -17,7 +17,7 @@ const rootFields = {
   stockBySymbol: {
     type: stockType,
     args: {
-      id: {
+      symbol: {
         type: GraphQLString,
       }
     },
