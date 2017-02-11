@@ -5,9 +5,12 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 
 import './App.css';
 
-import BookSearch from './BookSearch';
 import Stocks from './Stocks';
 
+import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
+const wsClient = new SubscriptionClient('ws://loki.graphql.tk:5001/', {
+  reconnect: true
+});
 
 const Layout = ({ children }) => (
   <div>{ children }</div>
@@ -15,7 +18,7 @@ const Layout = ({ children }) => (
 
 // Replace this Uri with your GraphQL server Uri
 // const serverUri = 'http://localhost:5000/';
-const serverUri = 'http://loki.graphql.tk:5000';
+const serverUri = 'http://loki.graphql.tk:5000/graphql';
 
 class App extends Component {
   constructor(...args) {
@@ -25,6 +28,11 @@ class App extends Component {
       uri: serverUri,
       opts: { cors: true },
     });
+
+    const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
+      networkInterface,
+      wsClient,
+    );
 
     this.client = new ApolloClient({
       networkInterface,
@@ -38,9 +46,7 @@ class App extends Component {
       <ApolloProvider client={this.client}>
         <Router history={browserHistory}>
           <Route path="/" component={Layout}>
-            <IndexRoute component={BookSearch} />
-            <Route path="stocks" component={Stocks} />
-
+            <IndexRoute component={Stocks} />
           </Route>
         </Router>
       </ApolloProvider>

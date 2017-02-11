@@ -1,4 +1,5 @@
 import React from 'react';
+import {Cell} from 'fixed-data-table';
 
 class NumbericColorCell extends React.Component {
   render() {
@@ -10,3 +11,5 @@ class NumbericColorCell extends React.Component {
     );
   }
 }
+
+export default NumbericColorCell;

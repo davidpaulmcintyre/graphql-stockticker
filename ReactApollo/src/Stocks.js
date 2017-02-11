@@ -3,96 +3,68 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import {Table, Column, Cell} from 'fixed-data-table';
 import TextCell from './TextCell';
-import NumbericColorCell from './NumbericColorCell';
+import NumbericColorCell from './NumbericColorCell.js';
+import '../node_modules/fixed-data-table/dist/fixed-data-table.min.css';
 
-const Stocks = ({ data: { loading } }) => {
-    const stocks = [
-      {
-        "companyName": "Facebook",
-        "symbol": "FB",
-        "price": 134.19,
-        "change": 0.05,
-        "changePct": 0.04,
-        "openPrice": 134.1,
-        "marketCap": "387.81B",
-        "exchange": "NASDAQ"
-      },
-      {
-        "companyName": "Alphabet",
-        "symbol": "GOOG",
-        "price": 813.67,
-        "change": 4.11,
-        "changePct": 0.51,
-        "openPrice": 811.7,
-        "marketCap": "569.09B",
-        "exchange": "NASDAQ"
-      }
-  ];
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // } else {
+const Stocks = ({ data: { loading, stocks } }) => {
+  if (loading) {
+    return <div>Loading...</div>;
+  } else {
+    const headerHeight = 50;
+    const rowHeight = 50;
+    const height = stocks.length * rowHeight + headerHeight;
     return (
-      <div>
+      <div style={{padding: '20px'}}>
         <h3>{'Stock Ticker'}</h3>
+
         <Table
-          rowHeight={50}
+          rowHeight={rowHeight}
           rowsCount={stocks.length}
-          width={5000}
-          height={5000}
-          headerHeight={50}>
+          width={1000}
+          height={height}
+          headerHeight={headerHeight}>
+
           <Column
             header={<Cell>Symbol</Cell>}
-            align='left'
-            cell={<TextCell data={rows}
-              field="symbol"
-            />}
-            width={100}
+            cell={<TextCell data={stocks} field="symbol" />
+            }
+            width={200}
           />
+              
           <Column
-            header={<Cell>Company Name</Cell>}
-            align='left'
-            cell={<TextCell data={stocks}
-              field="companyName"
-            />}
-            width={300}
+            header={<Cell>{'Company Name'}</Cell>}
+            cell={<TextCell data={stocks} field="companyName" />
+            }
+            width={200}
           />
+                 
           <Column
             header={<Cell>Price</Cell>}
-            align='right'
-            cell={
-              <TextCell
-                data={rows}
-                field="price"
-              />
+            cell={<TextCell data={stocks} field="price" />
             }
             width={200}
           />
-           <Column
+
+          <Column
             header={<Cell>Change</Cell>}
-            align='right'
-            cell={
-              <TextCell
-                data={rows}
-                field="change"
-              />
+            cell={<TextCell data={stocks} field="symbol" />
             }
             width={200}
-          /> 
+          />
+
           <Column
             header={<Cell>{'% Change'}</Cell>}
-             align='right'
-            cell={
-              <TextCell
-                data={rows}
-                field="changePct"
-              />
+            cell={<TextCell data={stocks} field="changePct" />
             }
             width={200}
-          /> 
+          />
+
+              
         </Table>
+
       </div>
     );
-  // }
+  }
 };
 
 export default graphql(gql`
@@ -108,9 +80,5 @@ export default graphql(gql`
       exchange,
     }
   }
-`, {
-  // These params come from React Router's URL pattern
-  options: ({ params }) => {
-    return { }
-  },
-})(Stocks);
+`
+)(Stocks);
