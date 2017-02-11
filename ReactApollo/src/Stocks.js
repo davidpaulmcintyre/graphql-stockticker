@@ -12,12 +12,13 @@ const Stocks = ({ data: { loading, stocks } }) => {
   if (loading) {
     return <div>Loading...</div>;
   } else {
+    stocks = stocks || [];
     const headerHeight = 50;
     const rowHeight = 50;
     const height = stocks.length * rowHeight + headerHeight;
     return (
       <div style={{padding: '20px'}}>
-        <h3>{'Stock Ticker'}</h3>
+        <h2>{'Stock Ticker'}</h2>
 
         <Table
           rowHeight={rowHeight}

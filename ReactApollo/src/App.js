@@ -18,8 +18,8 @@ const Layout = ({ children }) => (
 );
 
 // Replace this Uri with your GraphQL server Uri
-// const serverUri = 'http://localhost:5000/';
-const serverUri = 'http://loki.graphql.tk:5000/graphql';
+const serverUri = 'http://localhost:5000/';
+// const serverUri = 'http://loki.graphql.tk:5000/graphql';
 
 class App extends Component {
   constructor(...args) {
