@@ -7,7 +7,7 @@ import auth from 'basic-auth';
 const app = express();
 app.use(cors());
 
-app.use('/', (req, res)=>{
+app.use('/graphql', (req, res)=>{
   var user = auth(req);
   graphqlHTTP({
     schema: schema,
