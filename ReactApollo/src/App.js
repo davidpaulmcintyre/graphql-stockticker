@@ -7,6 +7,11 @@ import './App.css';
 
 import Stocks from './Stocks';
 
+import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
+const wsClient = new SubscriptionClient('ws://loki.graphql.tk:5001/', {
+  reconnect: true
+});
+
 const Layout = ({ children }) => (
   <div>{ children }</div>
 );
@@ -23,6 +28,11 @@ class App extends Component {
       uri: serverUri,
       opts: { cors: true },
     });
+
+    const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
+      networkInterface,
+      wsClient,
+    );
 
     this.client = new ApolloClient({
       networkInterface,
