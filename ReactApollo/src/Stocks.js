@@ -5,6 +5,7 @@ import {Table, Column, Cell} from 'fixed-data-table';
 import TextCell from './TextCell';
 import LinkCell from './LinkCell';
 import NumbericColorCell from './NumbericColorCell.js';
+import NumberCell from './NumberCell.js';
 import '../node_modules/fixed-data-table/dist/fixed-data-table.min.css';
 
 const Stocks = ({ data: { loading, stocks } }) => {
@@ -41,21 +42,21 @@ const Stocks = ({ data: { loading, stocks } }) => {
                  
           <Column
             header={<Cell>Price</Cell>}
-            cell={<TextCell data={stocks} field="price" />
+            cell={<NumberCell data={stocks} field="price" />
             }
             width={200}
           />
 
           <Column
             header={<Cell>Change</Cell>}
-            cell={<TextCell data={stocks} field="symbol" />
+            cell={<NumbericColorCell data={stocks} field="change" />
             }
             width={200}
           />
 
           <Column
             header={<Cell>{'% Change'}</Cell>}
-            cell={<TextCell data={stocks} field="changePct" />
+            cell={<NumbericColorCell data={stocks} field="changePct" />
             }
             width={200}
           />
