@@ -61,7 +61,7 @@ const Stocks = ({ data: { loading, stocks } }) => {
 
               
         </Table>
-
+        
       </div>
     );
   }
