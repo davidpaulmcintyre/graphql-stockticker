@@ -11,7 +11,7 @@ import StockDetail from './StockDetail';
 import SubscriptionWithData from './Subscription';
 
 import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
-const wsClient = new SubscriptionClient('ws://localhost:5001/', {
+const wsClient = new SubscriptionClient('ws://loki.graphql.tk:5001/', {
   reconnect: true
 });
 
@@ -49,8 +49,7 @@ export const SUBSCRIPTION_QUERY = gql`
 `;
 
 // Replace this Uri with your GraphQL server Uri
-const serverUri = 'http://localhost:5000/graphql';
-// const serverUri = 'http://loki.graphql.tk:5000/graphql';
+ const serverUri = 'http://loki.graphql.tk:5000/graphql';
 
 class App extends Component {
   constructor(...args) {
