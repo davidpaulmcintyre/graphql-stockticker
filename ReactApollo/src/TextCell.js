@@ -1,3 +1,5 @@
+import React from 'react';
+
 class TextCell extends React.Component {
   render() {
     const {rowIndex, field, data, ...props} = this.props;

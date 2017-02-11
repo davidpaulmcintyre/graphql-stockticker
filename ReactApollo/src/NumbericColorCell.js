@@ -1,3 +1,5 @@
+import React from 'react';
+
 class NumbericColorCell extends React.Component {
   render() {
     const {rowIndex, field, data, ...props} = this.props;

@@ -27,11 +27,10 @@ const Stocks = ({ data: { loading } }) => {
         "marketCap": "569.09B",
         "exchange": "NASDAQ"
       }
-    ]
   ];
-  if (loading) {
-    return <div>Loading...</div>;
-  } else {
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // } else {
     return (
       <div>
         <h3>{'Stock Ticker'}</h3>
@@ -55,42 +54,45 @@ const Stocks = ({ data: { loading } }) => {
             cell={<TextCell data={stocks}
               field="companyName"
             />}
-            width={1000}
+            width={300}
           />
           <Column
             header={<Cell>Price</Cell>}
             align='right'
-            cell={({rowIndex, ...props}) => (
-             cell={<TextCell data={stocks}
-              field="price"
-            />}
-            )}
-            width={2000}
+            cell={
+              <TextCell
+                data={rows}
+                field="price"
+              />
+            }
+            width={200}
           />
-          <Column
+           <Column
             header={<Cell>Change</Cell>}
             align='right'
-            cell={({rowIndex, ...props}) => (
-           cell={<NumbericColorCell data={stocks}
-              field="change"
-            />}
-            )}
-            width={2000}
-          />
+            cell={
+              <TextCell
+                data={rows}
+                field="change"
+              />
+            }
+            width={200}
+          /> 
           <Column
             header={<Cell>{'% Change'}</Cell>}
-            align='right'
-            cell={({rowIndex, ...props}) => (
-           cell={<NumbericColorCell data={stocks}
-              field="percentChange"
-            />}
-            )}
-            width={2000}
-          />
+             align='right'
+            cell={
+              <TextCell
+                data={rows}
+                field="changePct"
+              />
+            }
+            width={200}
+          /> 
         </Table>
       </div>
     );
-  }
+  // }
 };
 
 export default graphql(gql`
