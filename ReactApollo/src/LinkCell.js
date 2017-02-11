@@ -8,7 +8,7 @@ class LinkCell extends React.Component {
     const strLink = data[rowIndex][field];
     return (
       <Cell {...props}>
-        <Link to={`/${strLink}`}>
+        <Link to={`stocks/${strLink}`}>
           {strLink}
         </Link>
       </Cell>
