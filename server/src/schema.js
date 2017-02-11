@@ -14,15 +14,15 @@ const rootFields = {
       return stocks;
     }
   },
-  stockByID: {
+  stockBySymbol: {
     type: stockType,
     args: {
       id: {
         type: GraphQLString,
       }
     },
-    resolve: (object, {id}, context, info) => {
-      return stocks.find(stock => `stock-${stock.id}` == id);
+    resolve: (object, {symbol}, context, info) => {
+      return stocks.find(stock => stock.symbol == symbol);
     }
   },
   stockSearch: {
