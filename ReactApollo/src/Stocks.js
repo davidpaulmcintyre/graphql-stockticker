@@ -44,21 +44,21 @@ const Stocks = ({ data: { loading } }) => {
 };
 
 export default graphql(gql`
-  query StocksQuery($bookId: String!) {
-    bookByID(id: $bookId) {
-      id
-      title
-      image
-      description
-      author {
-        id
-        name
-      }
+  query StocksQuery {
+    stocks {
+      companyName,
+      symbol,
+      price,
+      change,
+      changePct,
+      openPrice,
+      marketCap,
+      exchange,
     }
   }
 `, {
   // These params come from React Router's URL pattern
   options: ({ params }) => {
-    return { variables: { bookId: params.bookId } }
+    return { }
   },
 })(Stocks);
