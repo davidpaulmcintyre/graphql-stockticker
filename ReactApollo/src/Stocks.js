@@ -2,10 +2,33 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import {Table, Column, Cell} from 'fixed-data-table';
-
+import TextCell from './TextCell';
+import NumbericColorCell from './NumbericColorCell';
 
 const Stocks = ({ data: { loading } }) => {
-  const rows = [];
+    const stocks = [
+      {
+        "companyName": "Facebook",
+        "symbol": "FB",
+        "price": 134.19,
+        "change": 0.05,
+        "changePct": 0.04,
+        "openPrice": 134.1,
+        "marketCap": "387.81B",
+        "exchange": "NASDAQ"
+      },
+      {
+        "companyName": "Alphabet",
+        "symbol": "GOOG",
+        "price": 813.67,
+        "change": 4.11,
+        "changePct": 0.51,
+        "openPrice": 811.7,
+        "marketCap": "569.09B",
+        "exchange": "NASDAQ"
+      }
+    ]
+  ];
   if (loading) {
     return <div>Loading...</div>;
   } else {
@@ -14,26 +37,53 @@ const Stocks = ({ data: { loading } }) => {
         <h3>{'Stock Ticker'}</h3>
         <Table
           rowHeight={50}
-          rowsCount={rows.length}
+          rowsCount={stocks.length}
           width={5000}
           height={5000}
           headerHeight={50}>
           <Column
-            header={<Cell>Col 1</Cell>}
-            cell={<Cell>Column 1 static content</Cell>}
-            width={2000}
+            header={<Cell>Symbol</Cell>}
+            align='left'
+            cell={<TextCell data={rows}
+              field="symbol"
+            />}
+            width={100}
           />
           <Column
-            header={<Cell>Col 2</Cell>}
-            cell={<MyCustomCell mySpecialProp="column2" />}
+            header={<Cell>Company Name</Cell>}
+            align='left'
+            cell={<TextCell data={stocks}
+              field="companyName"
+            />}
             width={1000}
           />
           <Column
-            header={<Cell>Col 3</Cell>}
+            header={<Cell>Price</Cell>}
+            align='right'
             cell={({rowIndex, ...props}) => (
-              <Cell {...props}>
-                Data for column 3: {rows[rowIndex][2]}
-              </Cell>
+             cell={<TextCell data={stocks}
+              field="price"
+            />}
+            )}
+            width={2000}
+          />
+          <Column
+            header={<Cell>Change</Cell>}
+            align='right'
+            cell={({rowIndex, ...props}) => (
+           cell={<NumbericColorCell data={stocks}
+              field="change"
+            />}
+            )}
+            width={2000}
+          />
+          <Column
+            header={<Cell>{'% Change'}</Cell>}
+            align='right'
+            cell={({rowIndex, ...props}) => (
+           cell={<NumbericColorCell data={stocks}
+              field="percentChange"
+            />}
             )}
             width={2000}
           />
