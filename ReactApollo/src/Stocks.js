@@ -33,14 +33,14 @@ const Stocks = ({ data: { loading, stocks } }) => {
             }
             width={200}
           />
-              
+
           <Column
             header={<Cell>{'Company Name'}</Cell>}
             cell={<TextCell data={stocks} field="companyName" />
             }
             width={200}
           />
-                 
+
           <Column
             header={<Cell>Price</Cell>}
             cell={<NumberCell data={stocks} field="price" />
@@ -62,9 +62,9 @@ const Stocks = ({ data: { loading, stocks } }) => {
             width={200}
           />
 
-              
+
         </Table>
-        
+
       </div>
     );
   }
@@ -80,7 +80,7 @@ export default graphql(gql`
       changePct,
       openPrice,
       marketCap,
-      exchange,
+      exchange
     }
   }
 `
