@@ -5,7 +5,8 @@ import { graphql } from 'react-apollo';
 
 const StockDetail = ({ data: { stockBySymbol } }) => {
 
-    return <div>hello.</div>;
+    stockBySymbol = stockBySymbol || {};
+    return <div>{stockBySymbol.companyName} {stockBySymbol.price}</div>;
 };
 
 export default StockDetail;
@@ -16,6 +17,11 @@ export default graphql(gql`
             companyName
             symbol
             price
+            change
+            changePct
+            openPrice
+            marketCap
+            exchange
     }
   }
 `, {
